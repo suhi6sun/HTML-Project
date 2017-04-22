@@ -1,0 +1,198 @@
+import javax.swing.*; // import  java library from swing packages
+import java.util.*;  // import java library from the util packages 
+
+public class Project{   // name of the program 
+
+ public static void main(String[] args){ // creating and strating main method
+    
+   {  
+   	DVD x[]= new DVD [3]; // creating and setting up new arrays 
+   	
+          menu(x);  //  this is a method been called into the main method
+   }    
+      
+   System.exit(0); // close main method 
+    
+   }// end main method
+   
+
+//=========================================================
+    
+   public static void menu(DVD x[])  // creating a method called menu and passing by my arrays
+   {
+    
+    int choice=0;  // condition if =0 then start while loop
+    
+    while(choice>= 0) { // while loop will start until user press -1 to stop 
+
+
+    
+    
+      	
+      	
+       
+        choice = Integer.parseInt(JOptionPane.showInputDialog( "press 1.... for User_Input\n" +   // dialog box for user to enter the  menu opition 
+                                              " press 2.... for Search\n" +
+                                              	"Press 3....for Save /n" +
+                                              	"press 4....for print /n" +
+                                              	"press 5.... for sorting Arrays /n" +
+                                              " press -1 to exit")); // press - 1 to exit while loop
+                                              
+         //choice=Integer.parseInt(Str);                                           
+                                 
+    if (choice==1)  // if user press 1 then it bring the User_input(x) method 
+    {
+     
+        User_Input(x); 
+    }
+      
+     if (choice==2) // if user press 2 then bring the SearchMethod 
+    {
+       SearchMethod( x);
+    }
+    
+    if  (choice==3) // 
+    {
+      //Save();
+    }
+     if  (choice==4)
+    {
+  //   printDVD(x);
+    }
+      if  (choice==5) 
+    {
+     bubble_sort (x);
+    }
+     
+     else if (choice== -1)
+     {
+         System.out.print("Bye");
+     }                                      
+                                 
+     
+     }
+   }// end of menu method
+   
+//========================================================= 
+public static void User_Input (DVD x[]) // uses For loop to input from user into array
+{ // starting User_Input method
+
+  int index;
+  for(index =0; index<3; index++) // for loop 
+  { // staring for loop 
+    String title=JOptionPane.showInputDialog("please enter the title of  dvd...");  // user input for entering the dvd name
+    String genre=JOptionPane.showInputDialog("please enter the genre...");   // input dialog box for genre
+    double price= Double.parseDouble(JOptionPane.showInputDialog("please enter the price "));  // user input the price of dvd 
+    
+    x[index] = new DVD(title,genre,price);      // constructor
+   
+   System.out.println ( x [index] .title + "" + x [index] .genre + "" + x [index] .price);  // will print the JOptionPane of title,genre, price
+   
+    x[index]= new DVD(title,genre,price); // creating a new object 
+     	
+     	
+     x[index].printDVD();// calling print methods 
+     
+     menu(x); // calling menu method
+   
+  } // end For lopp
+} //method User_Input    
+
+    
+    
+//=================================================================================
+public static void bubble_sort (DVD x[])
+ 	{
+ 		int total=0; int y=1;
+ 		
+   		 for (int pass = 0; pass < x.length - 1; pass++)  //  happens 3 times only - controls inner loop
+    	{
+     		for(int counter = 0; counter < x.length -  y; counter++) // happens 4 times 
+     		{
+      			if (x[counter].price > x[counter+1].price) //compare 2 elements in the array
+	     			swap (x, counter, counter+1); // pass parameters
+	     			System.out.println ( x [counter] .title + "" + x [counter] .genre + "" + x [counter] .price);  // will print the JOptionPane of title,genre, price
+	     			
+	     	//	total++; // number of loops
+      			//print_array (array, arraySize); // print intermediate states as is sorted
+     		}
+     		
+     		
+    	}
+    	
+    	//for(int counter = 0; counter < x.length - 1; counter++) )
+    	//{
+    		 //System.out.println ( x [index] .title + "" + x [index] .genre + "" + x [index] .price);  // will print the JOptionPane of title,genre, price
+   
+    	//}
+    	
+ 	}
+// Exchange a given pair of values given by their positions in an array
+	public static void swap (DVD x [], int p1, int p2 ) 
+  	{
+    	 double temp;
+
+	    temp = x[p1].price;
+    	x[p1].price = x[p2].price;
+    	x[p2].price = temp;
+  	}
+
+	
+    	
+//==================================================================================
+public static void SearchMethod (DVD x[])
+{
+       
+        String title=JOptionPane.showInputDialog("please enter the title of  dvd you are  searching for ..."); // user input dialog box 
+       
+        for( int i =0; i<x.length; i++) //for loop 
+        {
+         if (x [i] .title.equalsIgnoreCase(x [i] .title)) { // allow the user to type in what they searching for 
+         
+         System.out.println(x[i]+ " DVD is found"); // print line 
+         JOptionPane.showInputDialog(null,"DVD is  found!!!"); // JOpitionpane that reutrns to if dvd is found.
+         return;
+       
+         } // end if statement
+        } // end for loop 
+
+         JOptionPane.showInputDialog(null,"DVD is not found!!!"); // JOpitionpane that reutrns to if dvd is  not found
+         System.out.println("DVD is not found!!!"); // print this line 
+        return;
+     
+
+} // end of SearchMethod
+//===================================================================================    
+  } // end of  Project  
+class DVD
+{
+	String title; //data type and variable for holding title and also thoses are characteristics for my DVD object
+	String genre; 
+	double price;
+	
+	
+	public DVD()   //default construtor method 
+	
+	{
+		title="";
+		genre="";
+		price=0.0;
+	}
+	
+    public DVD(String c,String g,double ye) // construtor with passing parameter
+{    
+     title=c;
+     genre=g;
+     price=ye;
+}
+
+	public void printDVD()  // printing method
+	{
+		System.out.println("title: \t\t" + title);
+		System.out.println("genre: \t\t" + genre);
+		System.out.println("price: \t\t" + price);
+	
+	}
+	
+
+}// end of class DVD
